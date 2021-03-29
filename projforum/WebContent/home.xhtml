@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<f:metadata>
+		</f:metadata>
+		<title>Not present in rendered output</title>
+	</h:head>
+	<body>
+		<f:view>
+			<h:form id="idForm">	
+				<h:outputLabel value="Olá, #{usuario.usuario}!" />
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<h:inputText id="idMensagem" value="#{mensagem.mensagem}"/><h:commandButton type="submit" value="Enviar" action="#{forumUtils.gravarMensagem(usuario.usuario, usuario.senha, mensagem.mensagem)}"/>
+				<br/>
+				<br/>
+			</h:form>
+			<h:form>
+				<p:dataTable value="#{forumUtils.retornaMensagens()}"
+					var="mensagensLista"
+					paginator="true"
+					rows="5"
+					paginatorPosition="bottom">
+					<p:column>
+						<h:outputText value="#{mensagensLista.usuario.usuario} disse:"/>
+					</p:column>
+					<p:column>
+						<h:outputText value="#{mensagensLista.mensagem}"/>
+					</p:column>
+					<p:column>
+						<h:outputText value="#{mensagensLista.dataMsg}"/>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<br/>	
+			<h:form>
+				<h:commandButton action="#{forumUtils.logOff()}" value="Sair" />
+			</h:form>
+		</f:view>
+		<script>
+			
+		</script>
+	</body>
+</html>
